@@ -13,14 +13,15 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: '#137CBD',
-                secondary: '#29ABE2',
+                primary: '#51B3AA',
+                secondary: '#D3DE32',
                 accent: '#FFB900',
                 complementary: '#FFFFFF'
             },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-                roboto: ['Roboto', 'sans-serif']
+                roboto: ['Roboto', 'sans-serif'],
+                sofia: ['Sofia Sans'],
             },
         },
     },
