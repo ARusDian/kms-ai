@@ -38,10 +38,24 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
+
+
+
+
+Route::middleware('auth')->group(function () {
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::prefix('admin')->middleware('role:admin|super-admin')->group(function () {
+        // TODO::add routes for admin features
+        Route::middleware('role:super-admin')->group(function () {
+            Route::resource('/user', UserController::class);
+        });
+    });
+
+    Route::prefix('user')->middleware('role:user|admin|super-admin')->group(function () {
+        // TODO::add routes for user features
+    });
+});
 
 require __DIR__ . '/auth.php';
