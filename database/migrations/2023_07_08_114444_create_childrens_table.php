@@ -28,7 +28,7 @@ return new class extends Migration
                 '+AB',
                 '+O'
                 ])->nullable();
-            $table->foreignId('photo_id')->nullable()->constrained('files')->onDelete('cascade');
+            $table->foreignId('photo_id')->nullable()->constrained('document_files')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
