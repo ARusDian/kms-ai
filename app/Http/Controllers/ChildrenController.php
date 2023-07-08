@@ -86,6 +86,7 @@ class ChildrenController extends Controller
             foreach ($immunizations as $immunization) {
                 // We need to calculate the recommended date based on the date of birth and the recommended age
                 // This was coded by Github Copilot so Proceed with caution
+                //TODO : Fix this
                 $recommended_date = date('Y-m-d', strtotime($children->date_of_birth . ' + ' . $immunization->recommended_age . ' days'));
                 ChildrenImmunization::create([
                     'children_id' => $children->id,
@@ -157,6 +158,7 @@ class ChildrenController extends Controller
             foreach ($immunizations as $immunization) {
                 // We need to calculate the recommended date based on the date of birth and the recommended age
                 // This was coded by Github Copilot so Proceed with caution
+                //TODO : Fix this
                 $recommended_date = date('Y-m-d', strtotime($children->date_of_birth . ' + ' . $immunization->recommended_age . ' days'));
                 ChildrenImmunization::create([
                     'children_id' => $children->id,

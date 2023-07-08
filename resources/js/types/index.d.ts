@@ -38,3 +38,24 @@ export interface Children {
     blood_type: string,
     photo?: Photo
 }
+
+export interface Measurement {
+    id: number,
+    height: number,
+    weight: number,
+    head_circumference: number,
+    is_birth_measurement: boolean,
+    date_of_measurement: string,
+    children_id: number,
+    note: string
+}
+
+export interface ChildImmunization {
+    id: number,
+    children_id: number,
+    immunization_id: number,
+    date_of_immunization: string,
+    recommended_date: string,
+    status: string,
+    note: string
+}
