@@ -187,8 +187,7 @@ class ChildrenController extends Controller
         $measurements = Measurement::where('children_id', $id)->orderBy('date_of_measurement', 'desc')->get();
         $immunizations = ChildrenImmunization::where('children_id', $id)->orderBy('recommended_date', 'asc')->get();
 
-        dd($child, $measurements, $immunizations);
-        return Inertia::render('Children/Show', [
+        return Inertia::render('Dashboard/Children/Show', [
             'child' => $child,
             'measurements' => $measurements,
             'immunizations' => $immunizations

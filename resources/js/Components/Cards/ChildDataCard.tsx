@@ -17,8 +17,6 @@ const ChildDataCard = ({ child }: Props) => {
     }
   }, []);
 
-  console.log(childAgeObj);
-
   return (
     <Link href={route('data-anak.show', child.id)} className="w-[600px] h-60 border rounded-2xl flex flex-row font-sofia group hover:bg-primary transition-color duration-300">
       <div className="w-[240px] h-full p-4">

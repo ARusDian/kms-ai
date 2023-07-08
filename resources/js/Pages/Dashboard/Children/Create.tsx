@@ -28,8 +28,6 @@ const Create = () => {
     e.preventDefault();
     form.post(route('data-anak.store'));
   }
-  
-  console.log(form.errors);
 
   return (
     <DashboardLayout>
