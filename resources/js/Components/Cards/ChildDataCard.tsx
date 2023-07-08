@@ -20,9 +20,9 @@ const ChildDataCard = ({ child }: Props) => {
   console.log(childAgeObj);
 
   return (
-    <Link href='#' className="w-[600px] h-60 border rounded-2xl flex flex-row font-sofia group hover:bg-primary transition-color duration-300">
+    <Link href={route('data-anak.show', child.id)} className="w-[600px] h-60 border rounded-2xl flex flex-row font-sofia group hover:bg-primary transition-color duration-300">
       <div className="w-[240px] h-full p-4">
-        <img src={asset('public', child.photo.path)} className='w-full h-full object-cover rounded-full border border-primary' />
+        <img src={asset('public', child.photo!.path)} className='w-full h-full object-cover rounded-full border border-primary' />
       </div>
       <div className="p-4 flex flex-col justify-center gap-3 w-[250px] flex-grow">
         <h1 className='text-3xl font-bold group-hover:text-white transition-color duration-300 '>{child.name}</h1>

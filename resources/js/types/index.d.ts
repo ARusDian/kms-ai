@@ -36,5 +36,5 @@ export interface Children {
     is_alergic: boolean,
     alergic_desc: string,
     blood_type: string,
-    photo: Photo
+    photo?: Photo
 }
