@@ -88,7 +88,7 @@ const Index = () => {
 
       <div className="w-full h-[1008px] md:h-[653px] lg:h-[815px]">
         <div className="flex flex-col-reverse md:flex-row h-full justify-center items-center gap-5 max-w-screen-2xl mx-auto">
-          <div className="w-[350px] h-[430px] md:w-[367px] md:h-[570px] lg:w-[666px] lg:h-[742px] bg-primary flex flex-col justify-center gap-6 px-2 md:px-8 lg:px-0">
+          <div className="w-[350px] h-[430px] md:w-[367px] md:h-[570px] lg:w-[666px] lg:h-[742px] bg-primary flex flex-col justify-center md:items-center gap-6 px-2 md:px-8 lg:px-0">
             <h1 className='text-[34px] md:text-[36px] lg:text-6xl md:w-[287px] lg:w-[502px] font-sofia text-white font-bold text-center md:text-start'>Mari, Dukung Tumbuh Kembang Anak <span className='underline'> Demi Masa Depan yang Lebih Baik</span></h1>
             <div className="flex flex-col lg:flex-row gap-6">
               <Link href='#' className='md:w-[267px] h-[52.3px] bg-[#378079] rounded-lg text-white text-[16px] md:text-[22px] font-roboto' as='button'>Gabung Sekarang!</Link>
