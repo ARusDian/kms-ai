@@ -27,7 +27,7 @@ const Navbar = () => {
           <Link href='#' className='bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out'>FAQ</Link>
           <Link href='#' className='bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out'>Lainnya</Link>
         </div>
-        <Link href='#' as='button' className="hidden md:inline-block w-[144px] h-[42px] bg-primary text-white rounded-lg text-[18px] hover:bg-opacity-90">
+        <Link href='/login' as='button' className="hidden md:inline-block w-[144px] h-[42px] bg-primary text-white rounded-lg text-[18px] hover:bg-opacity-90">
           Masuk
         </Link>
         <div className="md:hidden space-y-1.5 bg-primary p-3 rounded-lg" onClick={() => setMenuOpened(prev => !prev)}>

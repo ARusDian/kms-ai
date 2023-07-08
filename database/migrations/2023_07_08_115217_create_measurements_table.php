@@ -19,6 +19,7 @@ return new class extends Migration
             $table->boolean('is_birth_measurement')->default(false);
             $table->string('date_of_measurement');
             $table->foreignId('children_id')->constrained('childrens')->onDelete('cascade');
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }

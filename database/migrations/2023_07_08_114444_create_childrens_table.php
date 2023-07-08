@@ -19,16 +19,16 @@ return new class extends Migration
             $table->boolean('is_alergic')->default(false);
             $table->string('alergic_desc')->nullable();
             $table->enum('blood_type',[
-                '-A',
-                '-B',
-                '-AB',
-                '-O',
-                '+A',
-                '+B',
-                '+AB',
-                '+O'
+                'A-',
+                'B-',
+                'AB-',
+                'O-',
+                'A+',
+                'B+',
+                'AB+',
+                'O+'
                 ])->nullable();
-            $table->foreignId('photo_id')->nullable()->constrained('files')->onDelete('cascade');
+            $table->foreignId('photo_id')->nullable()->constrained('document_files')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });

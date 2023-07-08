@@ -4,6 +4,7 @@ import React, { useMemo } from 'react'
 
 const Sidebar = ({ auth }: PageProps) => {
   const userRoles = useMemo(() => auth.user.roles?.map(role => role.name), [auth]);
+  const [openDataAnak, setOpenDataAnak] = React.useState<boolean>(false);
 
   return (
     <>
@@ -11,6 +12,9 @@ const Sidebar = ({ auth }: PageProps) => {
         <div className="pt-2 px-3 flex flex-col font-semibold">
           <Link href={route('dashboard')} className="text-lg px-2 py-2 rounded-lg hover:bg-secondary">Dashboard</Link>
           <Link href={route('profile.edit')} className="text-lg px-2 py-2 rounded-lg hover:bg-secondary">Profile</Link>
+          <div className="text-lg group flex flex-col">
+            <Link href={route('data-anak.index')} className="text-lg px-2 py-2 rounded-lg hover:bg-secondary">Data Anak</Link>
+          </div>
           {
             userRoles?.includes('super-admin') &&
             <Link href={route('user.index')} className="text-lg px-2 py-2 rounded-lg hover:bg-secondary">Users</Link>

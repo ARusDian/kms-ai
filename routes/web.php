@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
@@ -56,6 +57,8 @@ Route::middleware('auth')->group(function () {
     Route::prefix('user')->middleware('role:user|admin|super-admin')->group(function () {
         // TODO::add routes for user features
     });
+
+    Route::resource('/data-anak', ChildrenController::class);
 });
 
 require __DIR__ . '/auth.php';
