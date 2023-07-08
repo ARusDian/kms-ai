@@ -25,7 +25,6 @@ const Create = () => {
 
   const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(form.data);
     form.post(route('data-anak.store'));
   }
   

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('children_id')->constrained('childrens')->onDelete('cascade');
             $table->foreignId('immunization_id')->constrained('immunizations')->onDelete('cascade');
-            $table->string('date_of_immunization');
+            $table->string('date_of_immunization')->nullable();
             $table->string('recommended_date')->nullable();
             $table->string('status');
             $table->string('note')->nullable();

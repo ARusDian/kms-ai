@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "material-react-table": "^1.14.0",
+        "moment": "^2.29.4",
         "react-select": "^5.7.3"
     }
 }

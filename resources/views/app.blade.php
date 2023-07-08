@@ -19,4 +19,7 @@
     <body class="font-sans antialiased">
         @inertia
     </body>
+    <script>
+      window.LARAVEL_ASSET_URL = "{{ asset('') }}";
+    </script>
 </html>

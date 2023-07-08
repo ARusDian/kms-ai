@@ -22,3 +22,19 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
         user: User;
     };
 };
+
+export interface Photo {
+    id: number,
+    disk: string,
+    path: string
+}
+export interface Children {
+    id: number,
+    name: string,
+    date_of_birth: string,
+    gender: string,
+    is_alergic: boolean,
+    alergic_desc: string,
+    blood_type: string,
+    photo: Photo
+}

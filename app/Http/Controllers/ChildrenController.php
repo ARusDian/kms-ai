@@ -9,6 +9,7 @@ use App\Models\Measurement;
 use App\Models\Immunization;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
@@ -19,7 +20,10 @@ class ChildrenController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Dashboard/Children/Index');
+        $children = Children::with('photo')->where('user_id', Auth::user()->id)->get();
+        return Inertia::render('Dashboard/Children/Index', [
+            "children" => $children
+        ]);
     }
 
     /**
@@ -54,12 +58,7 @@ class ChildrenController extends Controller
 
         return DB::transaction(function () use ($validated) {
             if ($validated['photo'] != null) {
-                $image = DocumentFile::create([
-                    'name' => $validated['photo']->getClientOriginalName(),
-                    'path' => $validated['photo']->store('public/childrens'),
-                    'type' => $validated['photo']->getClientOriginalExtension(),
-                    'size' => $validated['photo']->getSize(),
-                ]);
+                $image = DocumentFile::createFile('public','/children',$validated["photo"]);
             }
             $children = Children::create([
                 'name' => $validated['name'],
@@ -130,12 +129,7 @@ class ChildrenController extends Controller
 
         return DB::transaction(function () use ($validated) {
             if ($validated['photo'] != null) {
-                $image = DocumentFile::create([
-                    'name' => $validated['photo']->getClientOriginalName(),
-                    'path' => $validated['photo']->store('public/childrens'),
-                    'type' => $validated['photo']->getClientOriginalExtension(),
-                    'size' => $validated['photo']->getSize(),
-                ]);
+                $image = DocumentFile::createFile('public','/children',$validated["photo"]);
             }
             $children = Children::create([
                 'name' => $validated['name'],
@@ -221,25 +215,16 @@ class ChildrenController extends Controller
         return DB::transaction(function () use ($validated, $id) {
             $children = Children::with('photo')->findOrFail($id);
 
-            if ($validated['photo'] != null) {
-                $image = DocumentFile::create([
-                    'name' => $validated['photo']->getClientOriginalName(),
-                    'path' => $validated['photo']->store('public/childrens'),
-                    'type' => $validated['photo']->getClientOriginalExtension(),
-                    'size' => $validated['photo']->getSize(),
-                ]);
-            }
-
-            if ($image != null) {
-                $document_file = DocumentFile::findOrFail($children->photo_id);
-                $document_file->deleteFile();
-                $document_file->delete();
-                $children->photo()->update([
-                    'name' => $validated['photo']->getClientOriginalName(),
-                    'path' => $validated['photo']->store('public/childrens'),
-                    'type' => $validated['photo']->getClientOriginalExtension(),
-                    'size' => $validated['photo']->getSize(),
-                ]);
+            if ($validated['photo'] != null ) {
+                if($children->photo_id == null){
+                    $image = DocumentFile::createFile('public','/children',$validated["photo"]);
+                    $children->update([
+                        'photo_id' => $image->id
+                    ]);
+                }else{
+                    $image = DocumentFile::findOrFail($children->photo_id);
+                    $image->replaceFile($validated["photo"]);
+                }
             }
 
             if ($children->date_of_birth != $validated['date_of_birth']) {
@@ -262,7 +247,6 @@ class ChildrenController extends Controller
                 'gender' => $validated['gender'],
                 'is_alergic' => $validated['is_alergic'],
                 'alergic_desc' => $validated['alergic_desc'],
-                'photo_id' => $image->id ?? null,
                 'blood_type' => $validated['blood_type'],
                 'user_id' => $validated['user_id'],
             ]);

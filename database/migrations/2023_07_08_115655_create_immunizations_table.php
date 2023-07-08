@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('immunizations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('type');
-            $table->string('prevention');
-            $table->string('indication');
-            $table->string('contraindication');
-            $table->string('chase_immunization');
-            $table->string('KIPI');
-            $table->string('schedule');
+            $table->text('name');
+            $table->text('type');
+            $table->text('prevention');
+            $table->text('indication');
+            $table->text('contraindication');
+            $table->text('chase_immunization');
+            $table->text('KIPI');
+            $table->text('schedule');
             $table->integer('recommended_days');
             $table->timestamps();
         });
