@@ -1,7 +1,7 @@
 import LinkButton from '@/Components/LinkButton'
 import DashboardLayout from '@/Layouts/DashboardLayout'
 import { Measurement, PageProps } from '@/types'
-import { usePage } from '@inertiajs/react'
+import { Head, usePage } from '@inertiajs/react'
 import { MRT_ColumnDef, MaterialReactTable } from 'material-react-table'
 import React, { useMemo } from 'react'
 
@@ -37,6 +37,7 @@ const Index = ({ measurements, childId }: Props) => {
 
   return (
     <DashboardLayout>
+      <Head title='Data Pengukuran'/>
       <div className="mb-4 flex flex-row justify-between w-full">
         <h1 className='text-3xl font-sofia font-bold'>Data Pengukuran</h1>
         <LinkButton href={route('pengukuran.create', childId)} className='font-sofia text-white bg-primary px-2 py-1 rounded-lg text-xl'>Tambah Data</LinkButton>

@@ -24,15 +24,17 @@ class MeasurementController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $child_id)
     {
-        //
+        return Inertia::render('Dashboard/Children/Measurement/Create', [
+            'childId' => $child_id
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, string $child_id)
     {
         //
         $validated = $request->validate([
@@ -40,7 +42,7 @@ class MeasurementController extends Controller
             "height" => ["required", "numeric", "min:0"],
             "head_circumference" => ["nullable", "numeric", "min:0"],
             "note" => ["nullable", "string", "max:255"],
-            "children_id" => ["required", "exists:children,id", "integer"],
+            "date_of_measurement" => ["required", "date", "date_format:Y-m-d"],
         ]);
 
         $measurement = Measurement::create([
@@ -48,16 +50,12 @@ class MeasurementController extends Controller
             "height" => $validated["height"],
             "head_circumference" => $validated["head_circumference"],
             "note" => $validated["note"],
-            "children_id" => $validated["children_id"],
-            "date_of_measurement" => now(),
+            "children_id" => $child_id,
+            "date_of_measurement" => $validated["date_of_measurement"],
             "is_birth_measurement" => false
         ]);
         
-        return redirect()->route('measurement.index', ['child_id' => $validated["children_id"]]);
-        // return response()->json([
-        //     "message" => "Measurement created successfully",
-        //     "data" => $measurement
-        // ], 201);
+        return redirect()->route('pengukuran.index', ['child_id' => $child_id]);
     }
 
     /**

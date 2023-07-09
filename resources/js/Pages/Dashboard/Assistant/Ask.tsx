@@ -18,24 +18,24 @@ const Index = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL }: Props) => {
 
     const [isAsking, setIsAsking] = useState(false);
 
-    const api = new ChatGPTUnofficialProxyAPI({
-        accessToken: ACCESS_TOKEN,
-        apiReverseProxyUrl: CHATGPT_PROXY_URL,
-    });
-    const submitHandler = async () => {
-        setIsAsking(true);
-        const response = await api.sendMessage("Anggaplah Dirimu sebagai orang yang bernama Ansel, Jawab Dalam Bahasa Indonesia\n\n" + formState.prompt).then((res) => {
-            console.log(res);
-            setFormState({
-                ...formState,
-                answer: res.text
-            });
-            console.log({ response });
-        }).catch(err => {
-            console.log({ err })
-        });
-        setIsAsking(false);
-    };
+    // const api = new ChatGPTUnofficialProxyAPI({
+    //     accessToken: ACCESS_TOKEN,
+    //     apiReverseProxyUrl: CHATGPT_PROXY_URL,
+    // });
+    // const submitHandler = async () => {
+    //     setIsAsking(true);
+    //     const response = await api.sendMessage("Anggaplah Dirimu sebagai orang yang bernama Ansel, Jawab Dalam Bahasa Indonesia\n\n" + formState.prompt).then((res) => {
+    //         console.log(res);
+    //         setFormState({
+    //             ...formState,
+    //             answer: res.text
+    //         });
+    //         console.log({ response });
+    //     }).catch(err => {
+    //         console.log({ err })
+    //     });
+    //     setIsAsking(false);
+    // };
 
     return (
         <DashboardLayout>
@@ -74,7 +74,7 @@ const Index = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL }: Props) => {
             </form>
             <div className="flex justify-center mt-5">
                 <button
-                    onClick={submitHandler}
+                    // onClick={submitHandler}
                     className="bg-yellow-500 text-white hover:bg-yellow-600 py-3 px-5 rounded-lg text-md font-semibold m-5 mt-10 w-1/2">
                     Submit
                 </button>
