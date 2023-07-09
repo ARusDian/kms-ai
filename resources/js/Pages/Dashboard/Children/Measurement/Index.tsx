@@ -1,7 +1,7 @@
 import LinkButton from '@/Components/LinkButton'
 import DashboardLayout from '@/Layouts/DashboardLayout'
 import { Measurement, PageProps } from '@/types'
-import { Head, usePage } from '@inertiajs/react'
+import { Head, Link, usePage } from '@inertiajs/react'
 import { MRT_ColumnDef, MaterialReactTable } from 'material-react-table'
 import React, { useMemo } from 'react'
 
@@ -37,7 +37,7 @@ const Index = ({ measurements, childId }: Props) => {
 
   return (
     <DashboardLayout>
-      <Head title='Data Pengukuran'/>
+      <Head title='Data Pengukuran' />
       <div className="mb-4 flex flex-row justify-between w-full">
         <h1 className='text-3xl font-sofia font-bold'>Data Pengukuran</h1>
         <LinkButton href={route('pengukuran.create', childId)} className='font-sofia text-white bg-primary px-2 py-1 rounded-lg text-xl'>Tambah Data</LinkButton>
@@ -52,6 +52,13 @@ const Index = ({ measurements, childId }: Props) => {
           enableBottomToolbar
           enableTopToolbar
           enableRowNumbers
+          enableRowActions
+          positionActionsColumn='last'
+          renderRowActions={({ row }) => (
+            <div className="flex flex-row gap-2">
+              <Link href={route('pengukuran.edit', [childId, row.original.id])} className='px-4 py-2 rounded-lg bg-secondary text-complementary font-roboto font-bold hover:bg-primary'>Edit</Link>
+            </div>
+          )}
         />
       </div>
     </DashboardLayout>

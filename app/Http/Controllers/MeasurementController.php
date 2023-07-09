@@ -14,7 +14,7 @@ class MeasurementController extends Controller
      */
     public function index(string $child_id)
     {
-        $measurements = Measurement::where('children_id', $child_id)->get();
+        $measurements = Measurement::where('children_id', $child_id)->orderBy('created_at', 'asc')->get();
         return Inertia::render('Dashboard/Children/Measurement/Index', [
             'measurements' => $measurements,
             'childId' => $child_id
@@ -69,15 +69,19 @@ class MeasurementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(string $child_id, string $id)
     {
-        //
+        $measurement = Measurement::find($id);
+        return Inertia::render('Dashboard/Children/Measurement/Edit', [
+            'measurement' => $measurement,
+            'childId' => $child_id
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $child_id, string $id)
     {
         //
 
@@ -86,7 +90,6 @@ class MeasurementController extends Controller
             "height" => ["required", "numeric", "min:0"],
             "head_circumference" => ["nullable", "numeric", "min:0"],
             "note" => ["nullable", "string", "max:255"],
-            "children_id" => ["required", "exists:children,id", "integer"],
         ]);
 
         $measurement = Measurement::find($id);
@@ -96,13 +99,9 @@ class MeasurementController extends Controller
             "height" => $validated["height"],
             "head_circumference" => $validated["head_circumference"],
             "note" => $validated["note"],
-            "children_id" => $validated["children_id"],
         ]);
 
-        return response()->json([
-            "message" => "Measurement updated successfully",
-            "data" => $measurement
-        ], 200);
+        return redirect()->route('pengukuran.index', ['child_id' => $child_id]);
     }
 
     /**
