@@ -20,11 +20,7 @@ const Index = ({ children }: Props) => {
       </div>
       <div className="mt-4 w-full h-fit shadow-xl border rounded-lg p-4">
         <div className="flex flex-wrap justify-around h-fit w-full gap-4 gap mx-auto">
-          {children.length > 0 && children.map((child) => (
-            <>
-              <ChildDataCard child={child} key={child.id} />
-            </>
-          ))}
+          {children.length > 0 && children.map((child) => <ChildDataCard key={child.id} child={child}/>)}
         </div>
       </div>
     </DashboardLayout>
