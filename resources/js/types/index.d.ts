@@ -47,7 +47,21 @@ export interface Measurement {
     is_birth_measurement: boolean,
     date_of_measurement: string,
     children_id: number,
-    note: string
+    note: string,
+    updated_at: string,
+}
+
+export interface Immunization {
+    id: number,
+    name: string,
+    type: string,
+    prevention: string,
+    indication: string,
+    contraindication: string,
+    chase_immunization: string,
+    KIPI: string,
+    schedule: string,
+    recommended_date: string,
 }
 
 export interface ChildImmunization {
@@ -57,5 +71,6 @@ export interface ChildImmunization {
     date_of_immunization: string,
     recommended_date: string,
     status: string,
-    note: string
+    note: string,
+    immunization: Immunization
 }
