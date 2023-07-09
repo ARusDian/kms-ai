@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssistantController;
 use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\MeasurementController;
 use App\Http\Controllers\ProfileController;
@@ -63,6 +64,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/data-anak/{child_id}')->group(function () {
         Route::resource('/pengukuran', MeasurementController::class);
     });
+    Route::get('/ask', [AssistantController::class, 'askView'])->name('ask');
 });
 
 require __DIR__ . '/auth.php';

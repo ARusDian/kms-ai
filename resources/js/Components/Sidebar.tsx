@@ -15,6 +15,9 @@ const Sidebar = ({ auth }: PageProps) => {
           <div className="text-lg group flex flex-col">
             <Link href={route('data-anak.index')} className="text-lg px-2 py-2 rounded-lg hover:bg-secondary">Data Anak</Link>
           </div>
+          <div className="text-lg group flex flex-col">
+            <Link href={route('ask')} className="text-lg px-2 py-2 rounded-lg hover:bg-secondary">Tanya Ansel</Link>
+          </div>
           {
             userRoles?.includes('super-admin') &&
             <Link href={route('user.index')} className="text-lg px-2 py-2 rounded-lg hover:bg-secondary">Users</Link>
