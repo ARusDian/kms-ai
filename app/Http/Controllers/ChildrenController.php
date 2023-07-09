@@ -87,7 +87,7 @@ class ChildrenController extends Controller
                 // We need to calculate the recommended date based on the date of birth and the recommended age
                 // This was coded by Github Copilot so Proceed with caution
                 //TODO : Fix this
-                $recommended_date = date('Y-m-d', strtotime($children->date_of_birth . ' + ' . $immunization->recommended_age . ' days'));
+                $recommended_date = date('Y-m-d', strtotime($children->date_of_birth . ' + ' . $immunization->recommended_days . ' days'));
                 ChildrenImmunization::create([
                     'children_id' => $children->id,
                     'immunization_id' => $immunization->id,
@@ -159,7 +159,7 @@ class ChildrenController extends Controller
                 // We need to calculate the recommended date based on the date of birth and the recommended age
                 // This was coded by Github Copilot so Proceed with caution
                 //TODO : Fix this
-                $recommended_date = date('Y-m-d', strtotime($children->date_of_birth . ' + ' . $immunization->recommended_age . ' days'));
+                $recommended_date = date('Y-m-d', strtotime($children->date_of_birth . ' + ' . $immunization->recommended_days . ' days'));
                 ChildrenImmunization::create([
                     'children_id' => $children->id,
                     'immunization_id' => $immunization->id,
@@ -241,7 +241,7 @@ class ChildrenController extends Controller
                 $childrenImmunizations = ChildrenImmunization::where('children_id', $children->id)->get();
                 foreach ($childrenImmunizations as $childrenImmunization) {
                     $immunization = Immunization::findOrFail($childrenImmunization->immunization_id);
-                    $recommended_date = date('Y-m-d', strtotime($validated['date_of_birth'] . ' + ' . $immunization->recommended_age . ' days'));
+                    $recommended_date = date('Y-m-d', strtotime($validated['date_of_birth'] . ' + ' . $immunization->recommended_days . ' days'));
                     $childrenImmunization->update([
                         'recommended_date' => $recommended_date
                     ]);
