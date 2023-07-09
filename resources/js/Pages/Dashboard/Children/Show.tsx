@@ -45,7 +45,7 @@ const Show = ({ child, measurement, immunizations }: Props) => {
       <div className="w-full border-t border-primary mt-2" />
 
       <div className="mx-auto flex flex-col">
-        <MeasurementDataCard measurement={measurement} />
+        <MeasurementDataCard measurement={measurement} childId={child.id}/>
 
         <ImmunizationDataCard childImmunizations={immunizations} />
       </div>

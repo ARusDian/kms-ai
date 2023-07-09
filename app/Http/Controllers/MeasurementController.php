@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Measurement;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class MeasurementController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $child_id)
     {
-        //
+        $measurements = Measurement::where('children_id', $child_id)->get();
+        return Inertia::render('Dashboard/Children/Measurement/Index', [
+            'measurements' => $measurements,
+            'childId' => $child_id
+        ]);
     }
 
     /**
@@ -48,10 +53,11 @@ class MeasurementController extends Controller
             "is_birth_measurement" => false
         ]);
         
-        return response()->json([
-            "message" => "Measurement created successfully",
-            "data" => $measurement
-        ], 201);
+        return redirect()->route('measurement.index', ['child_id' => $validated["children_id"]]);
+        // return response()->json([
+        //     "message" => "Measurement created successfully",
+        //     "data" => $measurement
+        // ], 201);
     }
 
     /**

@@ -5,15 +5,16 @@ import moment from 'moment'
 import React from 'react'
 
 interface Props {
-  measurement: Measurement
+  measurement: Measurement,
+  childId: number
 }
 
-const MeasurementDataCard = ({ measurement }: Props) => {
+const MeasurementDataCard = ({ measurement, childId }: Props) => {
   return (
     <div className="w-full mt-2 p-4">
       <div className="flex flex-row justify-between font-sofia">
         <h1 className='text-3xl font-bold'>Hasil Pertumbuhan</h1>
-        <Link href={'#'} className='font-sofia text-white bg-primary px-2 py-1 rounded-lg text-xl'>Lihat Semua</Link>
+        <Link href={route('pengukuran.index', childId)} className='font-sofia text-white bg-primary px-2 py-1 rounded-lg text-xl'>Lihat Semua</Link>
       </div>
       <div className="rounded-3xl shadow-lg border h-[540px] mt-4 flex flex-col">
         <div className="flex flex-row gap-4 justify-around items-center px-4 pt-4">

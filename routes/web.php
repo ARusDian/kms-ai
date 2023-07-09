@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChildrenController;
+use App\Http\Controllers\MeasurementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
@@ -59,6 +60,9 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('/data-anak', ChildrenController::class);
+    Route::prefix('/data-anak/{child_id}')->group(function () {
+        Route::resource('/pengukuran', MeasurementController::class);
+    });
 });
 
 require __DIR__ . '/auth.php';
