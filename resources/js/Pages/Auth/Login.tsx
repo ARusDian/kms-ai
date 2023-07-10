@@ -6,6 +6,7 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import Button from '@/Components/Button';
 
 export default function Login({ status, canResetPassword }: { status?: string, canResetPassword: boolean }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -70,6 +71,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                     <label className="flex items-center">
                         <Checkbox
                             name="remember"
+                            className='checked:bg-primary checked:hover:bg-green-300 focus:ring-0 checked:focus:bg-primary  active:bg-primary'
                             checked={data.remember}
                             onChange={(e) => setData('remember', e.target.checked)}
                         />
@@ -87,9 +89,9 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                         </Link>
                     )}
 
-                    <PrimaryButton className="ml-4" disabled={processing}>
+                    <Button type='submit' className="ml-4" disabled={processing}>
                         Log in
-                    </PrimaryButton>
+                    </Button>
                 </div>
             </form>
         </GuestLayout>
