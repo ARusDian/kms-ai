@@ -2,7 +2,7 @@ import Button from '@/Components/Button';
 import InputText from '@/Components/InputText';
 import DashboardLayout from '@/Layouts/DashboardLayout'
 import { PageProps } from '@/types';
-import { Head, useForm, usePage } from '@inertiajs/react'
+import { Head, Link, useForm, usePage } from '@inertiajs/react'
 import React from 'react'
 
 const Create = () => {
@@ -35,7 +35,10 @@ const Create = () => {
       <div className="w-full shadow-lg mt-2 rounded-lg p-4">
         <form className='font-roboto font-normal text-lg w-full flex flex-col gap-10' onSubmit={onSubmitHandler}>
           <div className="flex flex-col gap-6">
-            <h2 className='text-3xl font-bold font-sofia'>Data Umum</h2>
+            <div className="flex flex-row justify-between items-center">
+              <h2 className='text-3xl font-bold font-sofia'>Data Umum</h2>
+              <Link href={route('data-anak.index')} className='w-fit font-sofia text-white bg-primary px-4 py-2 rounded-lg text-xl justify-self-end'>Kembali</Link>
+            </div>
             <div className="flex flex-row justify-between gap-4 w-full">
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="name">Nama</label>
@@ -44,7 +47,7 @@ const Create = () => {
               </div>
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="date_of_birth">Tanggal Lahir</label>
-                <input type="date" className='rounded-lg focus:ring focus:ring-primary h-11' value={form.data.date_of_birth} onChange={(e) => form.setData('date_of_birth', e.target.value)} required max={today}/>
+                <input type="date" className='rounded-lg focus:ring focus:ring-primary h-11' value={form.data.date_of_birth} onChange={(e) => form.setData('date_of_birth', e.target.value)} required max={today} />
                 {form.errors.date_of_birth && <p className='text-sm text-red-500 font-semibold font-sofia'>{form.errors.date_of_birth}</p>}
               </div>
             </div>
