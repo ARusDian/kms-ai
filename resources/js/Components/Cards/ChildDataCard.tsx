@@ -18,7 +18,7 @@ const ChildDataCard = ({ child }: Props) => {
   }, []);
 
   return (
-    <Link href={route('data-anak.show', child.id)} className="w-[600px] h-60 border rounded-2xl flex flex-row font-sofia group hover:bg-primary transition-color duration-300">
+    <Link href={route('data-anak.show', child.id)} className="w-[600px] h-60 border border-primary shadow-lg rounded-2xl flex flex-row font-sofia group hover:bg-primary transition-color duration-300">
       <div className="w-[240px] h-full p-4">
         <img src={asset('public', child.photo!.path)} className='w-full h-full object-cover rounded-full border border-primary' />
       </div>
