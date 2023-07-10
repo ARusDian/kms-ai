@@ -24,6 +24,13 @@ class Children extends Model
         'is_alergic' => 'boolean'
     ];
 
+    public function scopeWithLastMeasurement($query)
+    {
+        return $query->with(['measurements' => function ($query) {
+            $query->orderBy('created_at', 'desc')->take(1);
+        }]);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

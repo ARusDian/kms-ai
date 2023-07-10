@@ -37,6 +37,7 @@ export interface Children {
     alergic_desc: string,
     blood_type: string,
     photo?: Photo
+    measurements?: Measurement[],
 }
 
 export interface Measurement {
