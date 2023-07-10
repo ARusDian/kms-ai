@@ -26,7 +26,7 @@ const Edit = ({ measurement, childId }: Props) => {
   };
 
   return (<DashboardLayout>
-    <Head title='Tambah Data Pengukuran' />
+    <Head title='Edit Data Pengukuran' />
 
     <div className="w-full p-4 rounded-lg shadow-lg">
       <h1 className='font-sofia text-3xl font-bold'>Tambah Data Pengukuran</h1>

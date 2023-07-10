@@ -1,7 +1,7 @@
 import Button from '@/Components/Button'
 import DashboardLayout from '@/Layouts/DashboardLayout'
 import { ChildImmunization } from '@/types'
-import { Link, useForm } from '@inertiajs/react'
+import { Head, Link, useForm } from '@inertiajs/react'
 import React from 'react'
 
 interface Props {
@@ -26,6 +26,7 @@ const Show = ({ childImmunization }: Props) => {
 
   return (
     <DashboardLayout>
+      <Head title='Edit Data Imunisasi' />      
       <div className="w-full rounded-lg shadow-lg p-4 text-lg font-semibold">
         <div className="flex flex-row justify-between">
           <h1 className='font-bold font-sofia text-3xl text-primary'>Data Imunisasi - {childImmunization.immunization.name}</h1>

@@ -1,7 +1,7 @@
 import Button from '@/Components/Button'
 import DashboardLayout from '@/Layouts/DashboardLayout'
 import { Children } from '@/types'
-import { useForm } from '@inertiajs/react'
+import { Head, useForm } from '@inertiajs/react'
 import React from 'react'
 
 interface Props {
@@ -35,6 +35,7 @@ const Edit = ({ child }: Props) => {
 
   return (
     <DashboardLayout>
+      <Head title='Edit Data Anak' />
       <div className="shadow-lg mt-2 rounded-lg p-4">
         <form onSubmit={onSubmitHandler} className="flex flex-col gap-6">
           <h2 className='text-3xl font-bold font-sofia'>Data Anak</h2>

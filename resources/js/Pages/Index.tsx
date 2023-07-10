@@ -1,6 +1,6 @@
 import Footer from '@/Components/Home/Footer'
 import Navbar from '@/Components/Home/Navbar'
-import { Link } from '@inertiajs/react'
+import { Head, Link } from '@inertiajs/react'
 import React from 'react'
 import AOS from "aos";
 import 'aos/dist/aos.css';
@@ -27,6 +27,7 @@ const Index = () => {
 
   return (
     <div>
+      <Head title='Home'/>
       <Navbar homeRef={homeRef} featureRef={featureRef} faqRef={faqRef} scrollTo={scrollToHandler}/>
 
       <div className="mt-24 w-full h-[1063px] md:h-[498px] lg:h-[815px] shadow-md mx-auto" ref={homeRef}>

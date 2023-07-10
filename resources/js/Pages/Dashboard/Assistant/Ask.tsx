@@ -1,4 +1,5 @@
 import DashboardLayout from '@/Layouts/DashboardLayout'
+import { Head } from '@inertiajs/react';
 import { ChatGPTUnofficialProxyAPI } from "chatgpt";
 import { useState } from 'react';
 import ReactLoading from 'react-loading';
@@ -39,6 +40,7 @@ const Index = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL }: Props) => {
 
   return (
     <DashboardLayout>
+      <Head title='Tanya Ansel' />
       <div className="text-3xl font-bold font-sofia mb-4">Tanya ANSEL</div>
 
       <form className="flex flex-col gap-5">
@@ -75,7 +77,7 @@ const Index = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL }: Props) => {
       </form>
       <div className="flex justify-start">
         <button
-          // onClick={submitHandler}
+          onClick={submitHandler}
           className="bg-yellow-500 text-white hover:bg-yellow-600 px-4 py-2 mt-4 rounded-lg text-md font-semibold w-32">
           Submit
         </button>
