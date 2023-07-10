@@ -26,6 +26,10 @@ Route::get('/', function () {
     return Inertia::render('Index');
 });
 
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
+
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', fn () => Inertia::render('Dashboard/Index'))->name('dashboard');
