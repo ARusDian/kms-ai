@@ -1,17 +1,33 @@
+import MeasurementDataCard from '@/Components/Cards/MeasurementDataCard';
 import DashboardLayout from '@/Layouts/DashboardLayout'
+import { Children, Measurement } from '@/types';
 import { ChatGPTUnofficialProxyAPI } from "chatgpt";
-import { useState } from 'react';
+import moment from 'moment';
+import { useMemo, useState } from 'react';
 import ReactLoading from 'react-loading';
+
+interface ChildrenWithLatestMeasurement extends Children {
+    measurements: Measurement[]
+}
 
 interface Props {
     ACCESS_TOKEN: string,
     CHATGPT_PROXY_URL: string
+    child: ChildrenWithLatestMeasurement
 }
 
-const Index = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL }: Props) => {
+const AskGrowth = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL, child }: Props) => {
+
+    const totalAgeDays = moment().diff(child.date_of_birth, 'days');
+    const childAgeObj = useMemo(() => {
+        return {
+            years: Math.floor(totalAgeDays / 365),
+            months: Math.floor((totalAgeDays % 365) / 30)
+        }
+    }, []);
 
     const [formState, setFormState] = useState({
-        prompt: "",
+        prompt: `Anak dengan nama ${child.name} berumur ${childAgeObj.years} Tahun ${childAgeObj.months} Bulan, memiliki tinggi badan ${child.measurements[0].height} cm, berat badan ${child.measurements[0].weight} kg, dan lingkar kepala ${child.measurements[0].head_circumference} cm. Apakah pertumbuhan anak saya normal?`,
         answer: "Tanya Ansel Apapun!",
         options: [],
     });
@@ -39,8 +55,11 @@ const Index = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL }: Props) => {
 
     return (
         <DashboardLayout>
-            <div className="text-3xl font-bold">Tanya ANSEL</div>
-
+            <div className="text-3xl font-bold">Analisis Pertumbuhan</div>
+            <MeasurementDataCard
+                measurement={child.measurements[0]}
+                childId={child.id}
+            />
             <form className="flex flex-col gap-5">
                 <div className="flex gap-3">
                     <label htmlFor="prompt" className="text-white">Prompt</label>
@@ -80,9 +99,8 @@ const Index = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL }: Props) => {
                 </button>
 
             </div>
-
         </DashboardLayout>
     )
 }
 
-export default Index
+export default AskGrowth;

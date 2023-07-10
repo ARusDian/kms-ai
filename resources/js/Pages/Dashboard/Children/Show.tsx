@@ -45,8 +45,15 @@ const Show = ({ child, measurement, immunizations }: Props) => {
       <div className="w-full border-t border-primary mt-2" />
 
       <div className="mx-auto flex flex-col">
-        <MeasurementDataCard measurement={measurement} childId={child.id}/>
-
+        <MeasurementDataCard measurement={measurement} childId={child.id} />
+        <div className='flex justify-end'>
+          <LinkButton
+            className='bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg px-4 py-2 font-roboto font-bold'
+            href={route('ask.growth', child.id)}
+          >
+            Analisis Pertumbuhan
+          </LinkButton>
+        </div>
         <ImmunizationDataCard childImmunizations={immunizations} />
       </div>
     </DashboardLayout>
