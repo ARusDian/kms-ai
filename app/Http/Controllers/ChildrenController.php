@@ -187,7 +187,7 @@ class ChildrenController extends Controller
     {
         $child = Children::with(['photo'])->findOrFail($id);
         $measurement = Measurement::where('children_id', $id)->orderBy('created_at', 'desc')->first();
-        $immunizations = ChildrenImmunization::with('immunization')->where('children_id', $id)->where('status', )->orderBy('recommended_date', 'asc')->take(3)->get();
+        $immunizations = ChildrenImmunization::with('immunization')->where('children_id', $id)->where('status', 'belum')->orderBy('recommended_date', 'asc')->take(3)->get();
 
         return Inertia::render('Dashboard/Children/Show', [
             'child' => $child,
