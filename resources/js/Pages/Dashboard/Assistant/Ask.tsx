@@ -39,6 +39,7 @@ const Index = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL }: Props) => {
         setIsError(true);
         console.log({ err })
     });
+    setIsAsking(false);
   };
 
   return (
