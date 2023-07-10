@@ -18,24 +18,24 @@ const Index = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL }: Props) => {
 
     const [isAsking, setIsAsking] = useState(false);
 
-    // const api = new ChatGPTUnofficialProxyAPI({
-    //     accessToken: ACCESS_TOKEN,
-    //     apiReverseProxyUrl: CHATGPT_PROXY_URL,
-    // });
-    // const submitHandler = async () => {
-    //     setIsAsking(true);
-    //     const response = await api.sendMessage("Anggaplah Dirimu sebagai orang yang bernama Ansel, Jawab Dalam Bahasa Indonesia\n\n" + formState.prompt).then((res) => {
-    //         console.log(res);
-    //         setFormState({
-    //             ...formState,
-    //             answer: res.text
-    //         });
-    //         console.log({ response });
-    //     }).catch(err => {
-    //         console.log({ err })
-    //     });
-    //     setIsAsking(false);
-    // };
+    const api = new ChatGPTUnofficialProxyAPI({
+        accessToken: ACCESS_TOKEN,
+        apiReverseProxyUrl: CHATGPT_PROXY_URL,
+    });
+    const submitHandler = async () => {
+        setIsAsking(true);
+        const response = await api.sendMessage("Anggaplah Dirimu sebagai orang yang bernama Ansel, Jawab Dalam Bahasa Indonesia\n\n" + formState.prompt).then((res) => {
+            console.log(res);
+            setFormState({
+                ...formState,
+                answer: res.text
+            });
+            console.log({ response });
+        }).catch(err => {
+            console.log({ err })
+        });
+        setIsAsking(false);
+    };
 
     return (
         <DashboardLayout>
