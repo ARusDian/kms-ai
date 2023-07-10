@@ -17,9 +17,9 @@ const Navbar = ({ homeRef, featureRef, faqRef, scrollTo }: Props) => {
   const HamburgerMenu = () => (
     <div className={`w-full h-full bg-white p-4 shadow-lg border-t z-40 transition-all  duration-300`}>
       <div className="flex flex-col justify-around h-full gap-3">
-        <Link href='#' className=''>Home</Link>
-        <Link href='#' className=''>Fitur</Link>
-        <Link href='#' className=''>FAQ</Link>
+        <div className=''>Home</div>
+        <div className=''>Fitur</div>
+        <div className=''>FAQ</div>
         <Link href='#' className=''>Lainnya</Link>
         <Link href='#' className='font-bold text-primary'>Masuk</Link>
       </div>
