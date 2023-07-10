@@ -2,7 +2,7 @@ import LinkButton from '@/Components/LinkButton';
 import Loading from '@/Components/Loading';
 import DashboardLayout from '@/Layouts/DashboardLayout'
 import { ChildImmunization } from '@/types';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import { Pagination } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect } from 'react'
@@ -58,13 +58,20 @@ const Index = ({ childId }: Props) => {
   return (
     <DashboardLayout>
       <Head title="Data Imunisasi Anak" />
-      <h1 className='font-sofia text-3xl font-bold'>Data Imunisasi Anak</h1>
+      <div className="grid grid-cols-3 w-full">
+        <h1 className='font-sofia text-3xl font-bold flex-shrink-0'>Data Imunisasi Anak</h1>
+        <div className="m-auto">
+          {
+            data.data.length > 0 && (
+              <Pagination count={data.last_page} onChange={onChange} size='large'/>
+            )
+          }
+        </div>
+        <Link href={route('data-anak.show', childId)} className='w-fit font-sofia text-white bg-primary px-4 py-2 rounded-lg text-xl justify-self-end'>Kembali</Link>
+      </div>
       {
         data.data.length > 0 ? (
           <>
-            <div className="w-full flex flex-row justify-center">
-              <Pagination count={data.last_page} onChange={onChange} />
-            </div>
             <div className="flex flex-col items-center w-full rounded-lg shadow-lg mt-4 gap-4 p-4">
               {data.data.map(childImmunization => (
                 <div className="flex flex-col justify-between w-full h-80 border border-primary rounded-lg p-4" key={childImmunization.id}>

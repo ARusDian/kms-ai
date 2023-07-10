@@ -1,7 +1,7 @@
 import Button from '@/Components/Button';
 import LinkButton from '@/Components/LinkButton';
 import DashboardLayout from '@/Layouts/DashboardLayout'
-import { Head, useForm } from '@inertiajs/react'
+import { Head, Link, useForm } from '@inertiajs/react'
 import React from 'react'
 
 interface Props {
@@ -31,7 +31,10 @@ const Create = ({ childId }: Props) => {
       <Head title='Tambah Data Pengukuran' />
 
       <div className="w-full p-4 rounded-lg shadow-lg">
-        <h1 className='font-sofia text-3xl font-bold'>Tambah Data Pengukuran</h1>
+        <div className="flex flex-row justify-between">
+          <h1 className='font-sofia text-3xl font-bold'>Tambah Data Pengukuran</h1>
+          <Link href={route('pengukuran.index', childId)} className='font-sofia text-white bg-primary px-4 py-2 rounded-lg text-xl'>Kembali</Link>
+        </div>
         <form className='flex flex-col gap-4 mt-6' onSubmit={onSubmitHandler}>
           <div className="flex flex-row justify-between gap-4 w-full">
             <div className="flex flex-col gap-2 w-full">
@@ -64,7 +67,7 @@ const Create = ({ childId }: Props) => {
             <textarea name="alergic_desc" className='rounded-lg focus:ring focus:ring-primary h-11 resize-none placeholder:text-gray-500 placeholder:text-md' placeholder='Berikan catatan bila perlu' value={form.data.note} onChange={(e) => form.setData('note', e.target.value)}></textarea>
           </div>
 
-          <Button type='submit' className='text-xl font-semibold'>Tambah</Button>
+          <Button type='submit' className='bg-secondary text-xl font-semibold'>Tambah</Button>
         </form>
       </div>
     </DashboardLayout>
