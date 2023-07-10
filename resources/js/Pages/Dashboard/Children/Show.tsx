@@ -62,8 +62,8 @@ const Show = ({ child, measurement, immunizations }: Props) => {
           </div>
           <div className="flex flex-row self-start gap-2">
             <Button className="w-fit bg-red-500 hover:bg-red-700 text-white rounded-lg px-4 py-2 font-roboto font-bold" onClick={() => setOpen(prev => !prev)}>Hapus</Button>
-            <Link href='#' className="w-fit bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2 font-roboto font-bold">Edit</Link>
-            <LinkButton href='#' className="w-fit text-white rounded-lg px-4 py-2 font-roboto font-bold">Kembali</LinkButton>
+            <Link href={route('data-anak.edit', child.id)} className="w-fit bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2 font-roboto font-bold">Edit</Link>
+            <LinkButton href={route('data-anak.index')} className="w-fit text-white rounded-lg px-4 py-2 font-roboto font-bold">Kembali</LinkButton>
           </div>
         </div>
         <div className="w-full border-t border-primary mt-2" />
