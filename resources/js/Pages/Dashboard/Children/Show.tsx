@@ -2,6 +2,7 @@ import Button from '@/Components/Button'
 import ImmunizationDataCard from '@/Components/Cards/ImmunizationDataCard'
 import MeasurementDataCard from '@/Components/Cards/MeasurementDataCard'
 import LinkButton from '@/Components/LinkButton'
+import Loading from '@/Components/Loading'
 import { asset } from '@/Helper/document_file'
 import DashboardLayout from '@/Layouts/DashboardLayout'
 import { ChildImmunization, Children, Measurement } from '@/types'
@@ -61,6 +62,7 @@ const Show = ({ child, measurement, immunizations }: Props) => {
             </div>
           </div>
           <div className="flex flex-row self-start gap-2">
+            {form.processing && <Loading color='black' className='w-8'/>}
             <Button className="w-fit bg-red-500 hover:bg-red-700 text-white rounded-lg px-4 py-2 font-roboto font-bold" onClick={() => setOpen(prev => !prev)}>Hapus</Button>
             <Link href={route('data-anak.edit', child.id)} className="w-fit bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2 font-roboto font-bold">Edit</Link>
             <LinkButton href={route('data-anak.index')} className="w-fit text-white rounded-lg px-4 py-2 font-roboto font-bold">Kembali</LinkButton>

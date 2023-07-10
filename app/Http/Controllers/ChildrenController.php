@@ -272,6 +272,9 @@ class ChildrenController extends Controller
     public function destroy($id)
     {
         //
-
+        $children = Children::findOrFail($id);
+        $children->photo->deleteFile();
+        $children->delete();
+        return redirect()->route('data-anak.index');
     }
 }
