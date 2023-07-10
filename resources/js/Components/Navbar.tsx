@@ -1,3 +1,4 @@
+import { asset } from '@/Helper/document_file'
 import { PageProps } from '@/types'
 import React from 'react'
 
@@ -5,9 +6,7 @@ const Navbar = ({ auth }: PageProps) => {
   return (
     <nav className='w-full bg-primary text-complementary z-50 fixed top-0 left-0 px-5 shadow-md'>
       <div className="flex justify-between items-center h-14 mx-auto">
-        <h1 className="text-xl font-bold font-sofia">
-          KMS.
-        </h1>
+        <img src={asset('root', 'assets/logo-anset.png')} alt="" className='w-24 mix-blend-difference' />
 
         <div className="flex items-center gap-3">
           <div className="relative w-8 h-8 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
