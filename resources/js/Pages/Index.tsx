@@ -4,11 +4,26 @@ import { Link } from '@inertiajs/react'
 import React from 'react'
 
 const Index = () => {
+  const homeRef = React.useRef<HTMLDivElement>(null);
+  const featureRef = React.useRef<HTMLDivElement>(null);
+  const faqRef = React.useRef<HTMLDivElement>(null);
+
+  const scrollToHandler = (ref: React.RefObject<HTMLDivElement>) => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+      scrollTo({
+        top: ref.current?.offsetTop - 100,
+        left: 0,
+        behavior: 'smooth'
+      })
+    }
+  }
+
   return (
     <div>
-      <Navbar />
+      <Navbar homeRef={homeRef} featureRef={featureRef} faqRef={faqRef} scrollTo={scrollToHandler}/>
 
-      <div className="mt-24 w-full h-[1063px] md:h-[498px] lg:h-[815px] shadow-md mx-auto">
+      <div className="mt-24 w-full h-[1063px] md:h-[498px] lg:h-[815px] shadow-md mx-auto" ref={homeRef}>
         <div className="p-5 md:p-10 lg:px-20 flex flex-col md:flex-row h-full w-full justify-center md:justify-between gap-5 lg:gap-20 lg:max-w-screen-2xl mx-auto">
           <div className="flex flex-col justify-center items-center md:items-start h-fit md:h-full">
             <h1 className='text-primary font-sofia text-center md:text-start text-[34px] md:text-[36px] lg:text-[34px] w-[347px] md:w-[374px] lg:w-[652px] font-bold'>
@@ -31,7 +46,7 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="w-full h-[1592px] md:h-[1201px] lg:h-[815px] bg-[rgba(81,179,170,0.08)]">
+      <div className="w-full h-[1592px] md:h-[1201px] lg:h-[815px] bg-[rgba(81,179,170,0.08)]" ref={featureRef}>
         <div className="h-full flex flex-col justify-center items-center gap-14 mx-auto px-4 md:px-0">
           <h1 className='md:w-[754px] lg:w-[894px] text-primary text-[34px] md:text-[36px] lg:text-6xl font-sofia leading-tight text-center'>Optimalkan Kesehatan Anak-anak, Temukan <span className='h-[58px] bg-[#D3DE32] text-white w-[374px] px-1'>Fitur Unggulan</span> Kami!</h1>
           <div className="h-fit lg:h-[455px] w-full max-w-screen-2xl flex flex-col md:flex-row md:flex-wrap md:justify-center lg:justify-around gap-4 lg:gap-10 font-sofia text-[32px]">
@@ -48,7 +63,7 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="w-full h-[1121px] md:h-[586px] lg:h-[815px] px-5 md:p-8 lg:p-20 flex flex-col md:flex-row justify-center md:justify-between lg:gap-20 max-w-screen-2xl mx-auto">
+      <div className="w-full h-[1121px] md:h-[586px] lg:h-[815px] px-5 md:p-8 lg:p-20 flex flex-col md:flex-row justify-center md:justify-between lg:gap-20 max-w-screen-2xl mx-auto" ref={faqRef}>
         <div className='hidden md:block lg:w-[552px] lg:h-[652px] bg-no-repeat bg-contain'>
           <img src="home/faq-image-sec.png" alt="" className='w-full h-full' />
         </div>
