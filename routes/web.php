@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AssistantController;
 use App\Http\Controllers\ChildrenController;
+use App\Http\Controllers\ChildrenImmunizationController;
+use App\Http\Controllers\ImmunizationController;
 use App\Http\Controllers\MeasurementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -51,6 +53,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::resource('/data-anak', ChildrenController::class);
     Route::prefix('/data-anak/{child_id}')->group(function () {
         Route::resource('/pengukuran', MeasurementController::class);
+        Route::resource('/imunisasi', ChildrenImmunizationController::class);
         Route::get('/ask', [AssistantController::class, 'askGrowth'])->name('ask.growth');
     });
     Route::get('/ask', [AssistantController::class, 'askView'])->name('ask');

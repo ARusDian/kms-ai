@@ -4,14 +4,15 @@ import React from 'react'
 
 interface Props {
   childImmunizations: ChildImmunization[],
+  childId: number,
 }
 
-const ImmunizationDataCard = ({ childImmunizations }: Props) => {
+const ImmunizationDataCard = ({ childImmunizations, childId }: Props) => {
   return (
     <div className="mt-2 w-full p-4">
       <div className="flex flex-row justify-between font-sofia">
         <h1 className='text-3xl font-bold'>Imunisasi</h1>
-        <Link href={'#'} className='font-sofia text-white bg-primary px-2 py-1 rounded-lg text-xl'>Lihat Semua</Link>
+        <Link href={route('imunisasi.index', childId)} className='font-sofia text-white bg-primary px-2 py-1 rounded-lg text-xl'>Lihat Semua</Link>
       </div>
       <div className="h-[660px] shadow-lg p-4 border mt-4 rounded-3xl">
         <div className="flex flex-col justify-around gap-4 h-full">

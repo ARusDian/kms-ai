@@ -6,16 +6,32 @@ use App\Http\Controllers\Controller;
 use App\Models\ChildrenImmunization;
 use App\Models\Immunization;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ChildrenImmunizationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $child_id)
     {
-        //
+        
+        return Inertia::render('Dashboard/Children/Immunization/Index', [
+            "childId" => $child_id
+        ]);
     }
+
+    public function getImmunization(string $child_id)
+    {
+        $immunization = ChildrenImmunization::where('children_id', $child_id)->orderBy('id', 'desc')->paginate(10);
+
+        return response()->json([
+            "status" => "success",
+            "code" => "200",
+            "data" => $immunization
+        ], 200);
+    }
+
 
     /**
      * Show the form for creating a new resource.

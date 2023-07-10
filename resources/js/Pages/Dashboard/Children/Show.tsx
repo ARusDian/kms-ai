@@ -41,7 +41,7 @@ const Show = ({ child, measurement, immunizations }: Props) => {
 
       <div className="mx-auto flex flex-col">
         <MeasurementDataCard measurement={measurement} childId={child.id} />
-        <ImmunizationDataCard childImmunizations={immunizations} />
+        <ImmunizationDataCard childImmunizations={immunizations} childId={child.id}/>
       </div>
     </DashboardLayout>
   )
