@@ -1,7 +1,7 @@
 import Button from '@/Components/Button'
 import DashboardLayout from '@/Layouts/DashboardLayout'
 import { ChildImmunization } from '@/types'
-import { useForm } from '@inertiajs/react'
+import { Link, useForm } from '@inertiajs/react'
 import React from 'react'
 
 interface Props {
@@ -27,7 +27,10 @@ const Show = ({ childImmunization }: Props) => {
   return (
     <DashboardLayout>
       <div className="w-full rounded-lg shadow-lg p-4 text-lg font-semibold">
-        <h1 className='font-bold font-sofia text-3xl text-primary'>Data Imunisasi - {childImmunization.immunization.name}</h1>
+        <div className="flex flex-row justify-between">
+          <h1 className='font-bold font-sofia text-3xl text-primary'>Data Imunisasi - {childImmunization.immunization.name}</h1>
+          <Link href={route('imunisasi.index', [childImmunization.children_id, childImmunization.id])} className='w-fit font-sofia text-white bg-primary px-4 py-2 rounded-lg text-xl justify-self-end'>Kembali</Link>
+        </div>
         <div className="flex flex-col gap-4 mt-2">
           <div className="flex flex-row gap-4 w-full">
             <div className="flex flex-col w-full gap-2">

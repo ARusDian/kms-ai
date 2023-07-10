@@ -40,7 +40,10 @@ const Index = ({ measurements, childId }: Props) => {
       <Head title='Data Pengukuran' />
       <div className="mb-4 flex flex-row justify-between w-full">
         <h1 className='text-3xl font-sofia font-bold'>Data Pengukuran</h1>
-        <LinkButton href={route('pengukuran.create', childId)} className='font-sofia text-white bg-primary px-2 py-1 rounded-lg text-xl'>Tambah Data</LinkButton>
+        <div className="flex flex-row gap-4 items-center">
+          <LinkButton href={route('pengukuran.create', childId)} className='font-sofia text-white bg-primary px-2 py-1 rounded-lg text-xl'>Tambah Data</LinkButton>
+          <Link href={route('data-anak.show', childId)} className='font-sofia text-white bg-secondary bg-opacity-80 px-4 py-2 rounded-lg text-xl'>Kembali</Link>
+        </div>
       </div>
       <div className="">
         <MaterialReactTable
