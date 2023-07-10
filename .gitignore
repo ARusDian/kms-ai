@@ -18,3 +18,4 @@ yarn-error.log
 /.idea
 /.vscode
 .pnpm-lock.yaml
+app/Providers/AppServiceProvider.php
