@@ -201,7 +201,10 @@ class ChildrenController extends Controller
      */
     public function edit($id)
     {
-        //
+        $child = Children::with('photo')->findOrFail($id);
+        return Inertia::render('Dashboard/Children/Edit', [
+            'child' => $child
+        ]);
     }
 
     /**
@@ -217,8 +220,7 @@ class ChildrenController extends Controller
             "is_alergic" => ["required", "boolean"],
             "alergic_desc" => ["nullable", "string", "max:255"],
             "photo" => ["nullable", "image", "max:2048"],
-            "blood_type" => ["nullable", "in:-A,-B,-AB,-O,+A,+B,+AB,+O"],
-            "user_id" => ["required", "exists:users,id", "integer"],
+            "blood_type" => ["nullable", "in:A-,B-,AB-,O-,A+,B+,AB+,O+"],
         ]);
 
 
@@ -258,13 +260,9 @@ class ChildrenController extends Controller
                 'is_alergic' => $validated['is_alergic'],
                 'alergic_desc' => $validated['alergic_desc'],
                 'blood_type' => $validated['blood_type'],
-                'user_id' => $validated['user_id'],
             ]);
 
-            return response()->json([
-                "message" => "Children updated successfully",
-                "data" => $children
-            ], 200);
+            return redirect()->route('data-anak.show', $children->id);
         });
     }
 
