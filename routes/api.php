@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GuestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/immunization/child/{child_id}', [App\Http\Controllers\ChildrenImmunizationController::class, 'getImmunization'])->name('immunization.child.get');
+
+Route::post('/guest/immunization', [GuestController::class, 'getImmunization'])->name('guest.immunization.get');
