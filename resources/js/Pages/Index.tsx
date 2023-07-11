@@ -7,6 +7,7 @@ import 'aos/dist/aos.css';
 import moment from 'moment';
 import axios from 'axios';
 import { Immunization } from '@/types';
+import { asset } from '@/Helper/document_file';
 
 interface GuestImmunization extends Immunization {
   immunization_date: string,
@@ -90,14 +91,20 @@ const Index = () => {
         <div className="h-full flex flex-col justify-center items-center gap-14 mx-auto px-4 md:px-0">
           <h1 className='md:w-[754px] lg:w-[894px] text-primary text-[34px] md:text-[36px] lg:text-6xl font-sofia leading-tight text-center' data-aos="fade-right" data-aos-easing="ease-in-out">Optimalkan Kesehatan Anak-anak, Temukan <span className='h-[58px] bg-[#D3DE32] text-white w-[374px] px-1'>Fitur Unggulan</span> Kami!</h1>
           <div className="h-fit lg:h-[455px] w-full max-w-screen-2xl flex flex-col md:flex-row md:flex-wrap md:justify-center lg:justify-around gap-4 lg:gap-10 font-sofia text-[32px]">
-            <div className="h-[415px] w-full md:w-[373px] rounded-3xl bg-[linear-gradient(to_right_bottom,rgba(211,222,50,0.38),rgba(211,222,50,0.38)),url('home/pengingat-imunisasi.png')] bg-no-repeat bg-cover flex flex-col justify-end p-4 text-white" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-offset="150">
-              <p className='drop-shadow-xl'>Pengingat <br /> Penjadwalan Imunisasi</p>
+            <div className="h-[415px] w-full md:w-[373px] rounded-3xl flex flex-col justify-end p-4 text-white relative" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-offset="150">
+              <div className="bg-[linear-gradient(to_right_bottom,rgba(211,222,50,0.38),rgba(211,222,50,0.38))] absolute top-0 left-0 z-10 w-full h-full rounded-3xl"></div>
+              <img src={asset('root', 'home/pengingat-imunisasi.png')} className='absolute top-0 left-0 h-[415px] w-full md:w-[373px]'/>
+              <p className='drop-shadow-xl z-20'>Pengingat <br /> Penjadwalan Imunisasi</p>
             </div>
-            <div className="h-[415px] w-full md:w-[373px] rounded-3xl bg-[linear-gradient(to_right_bottom,rgba(211,222,50,0.38),rgba(211,222,50,0.38)),url('home/asistensi-kesehatan.png')] bg-no-repeat bg-cover flex flex-col justify-end p-4 text-white" data-aos="fade-up" data-aos-easing="ease-in-out">
-              <p className='drop-shadow-xl'>Asistensi Kesehatan Anak dan Bayi</p>
+            <div className="h-[415px] w-full md:w-[373px] rounded-3xl flex flex-col justify-end p-4 text-white relative" data-aos="fade-up" data-aos-easing="ease-in-out">
+              <div className="bg-[linear-gradient(to_right_bottom,rgba(211,222,50,0.38),rgba(211,222,50,0.38))] absolute top-0 left-0 z-10 w-full h-full rounded-3xl"></div>
+              <img src={asset('root', 'home/asistensi-kesehatan.png')} className='absolute top-0 left-0 h-[415px] w-full md:w-[373px]'/>
+              <p className='drop-shadow-xl z-20'>Asistensi Kesehatan Anak dan Bayi</p>
             </div>
-            <div className="h-[415px] w-full md:w-[373px] rounded-3xl bg-[linear-gradient(to_right_bottom,rgba(211,222,50,0.38),rgba(211,222,50,0.38)),url('home/analisis-pertumbuhan.png')] bg-no-repeat bg-cover flex flex-col justify-end p-4 text-white" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-offset="150">
-              <p className='drop-shadow-xl'>Analisis Pertumbuhan Anak dan Bayi</p>
+            <div className="h-[415px] w-full md:w-[373px] rounded-3xl flex flex-col justify-end p-4 text-white relative" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-offset="150">
+              <div className="bg-[linear-gradient(to_right_bottom,rgba(211,222,50,0.38),rgba(211,222,50,0.38))] absolute top-0 left-0 z-10 w-full h-full rounded-3xl"></div>
+              <img src={asset('root', 'home/analisis-pertumbuhan.png')} className='absolute top-0 left-0 h-[415px] w-full md:w-[373px]'/>
+              <p className='drop-shadow-xl z-20'>Analisis Pertumbuhan Anak dan Bayi</p>
             </div>
           </div>
         </div>
