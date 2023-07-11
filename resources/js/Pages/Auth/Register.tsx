@@ -5,11 +5,13 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import Button from '@/Components/Button';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
+        phone_number: '',
         password: '',
         password_confirmation: '',
     });
@@ -66,6 +68,23 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
+                    <InputLabel htmlFor="phone_number" value="Nomor HP" />
+
+                    <TextInput
+                        id="phone_number"
+                        type="number"
+                        name="phone_number"
+                        value={data.phone_number}
+                        className="mt-1 block w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                        autoComplete="username"
+                        onChange={(e) => setData('phone_number', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.email} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
                     <InputLabel htmlFor="password" value="Password" />
 
                     <TextInput
@@ -107,9 +126,9 @@ export default function Register() {
                         Already registered?
                     </Link>
 
-                    <PrimaryButton className="ml-4" disabled={processing}>
+                    <Button type='submit' className="ml-4" disabled={processing}>
                         Register
-                    </PrimaryButton>
+                    </Button>
                 </div>
             </form>
         </GuestLayout>

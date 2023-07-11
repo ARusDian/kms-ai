@@ -79,7 +79,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                     </label>
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
+                <div className="flex items-center justify-end mt-4 gap-3">
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
@@ -92,6 +92,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                     <Button type='submit' className="ml-4" disabled={processing}>
                         Log in
                     </Button>
+                    <Link href={route('register')}className='px-4 py-2 border border-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300' >Daftar</Link>
                 </div>
             </form>
         </GuestLayout>
