@@ -1,7 +1,8 @@
-import DashboardLayout from "@/Layouts/DashboardLayout";
-import { ChildImmunization } from "@/types";
-import { useForm, Head, Link } from "@inertiajs/react";
-import { Button } from "@mui/material";
+import Button from '@/Components/Button'
+import DashboardLayout from '@/Layouts/DashboardLayout'
+import { ChildImmunization } from '@/types'
+import { Head, Link, useForm } from '@inertiajs/react'
+import React from 'react'
 
 interface Props {
   childImmunization: ChildImmunization
