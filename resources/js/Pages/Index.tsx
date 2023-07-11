@@ -1,9 +1,16 @@
 import Footer from '@/Components/Home/Footer'
 import Navbar from '@/Components/Home/Navbar'
-import { Head, Link } from '@inertiajs/react'
-import React from 'react'
+import { Head, Link, useForm } from '@inertiajs/react'
+import React, { useState } from 'react'
 import AOS from "aos";
 import 'aos/dist/aos.css';
+import moment from 'moment';
+import axios from 'axios';
+import { Immunization } from '@/types';
+
+interface GuestImmunization extends Immunization {
+  immunization_date: string,
+}
 
 const Index = () => {
   const homeRef = React.useRef<HTMLDivElement>(null);
@@ -21,14 +28,40 @@ const Index = () => {
     }
   }
 
+  const [childForm, setChildForm] = useState({
+    gender: "perempuan",
+    date_of_birth: moment(Date.now()).format('YYYY-MM-DD')
+  });
+  const dayDiff: number = Math.abs(moment(moment(Date.now())).diff(childForm.date_of_birth, 'days'));
+  const [immunizations, setImmunization] = useState<GuestImmunization[]>([]);
+
+  const searchImmunizationHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = {
+      dayDiff
+    }
+    axios.post(route('guest.immunization.get'), formData)
+      .then(res => {
+        const data = res.data.immunizations;
+        const calculatedData: GuestImmunization[] = data.map((immunization: Immunization) => {
+          return {
+            ...immunization,
+            immunization_date: moment(childForm.date_of_birth).add(parseInt(immunization.recommended_days), 'days').format('DD/MM/YYYY')
+          }
+        });
+
+        setImmunization(calculatedData);
+      }).catch(err => console.log(err));
+  }
+
   React.useEffect(() => {
     AOS.init();
-  },[])
+  }, []);
 
   return (
     <div>
-      <Head title='Home'/>
-      <Navbar homeRef={homeRef} featureRef={featureRef} faqRef={faqRef} scrollTo={scrollToHandler}/>
+      <Head title='Home' />
+      <Navbar homeRef={homeRef} featureRef={featureRef} faqRef={faqRef} scrollTo={scrollToHandler} />
 
       <div className="mt-24 w-full h-[1063px] md:h-[498px] lg:h-[815px] shadow-md mx-auto" ref={homeRef}>
         <div className="p-5 md:p-10 lg:px-20 flex flex-col md:flex-row h-full w-full justify-center md:justify-between gap-5 lg:gap-20 lg:max-w-screen-2xl mx-auto" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-offset="100">
@@ -86,22 +119,32 @@ const Index = () => {
         <div className="flex flex-col justify-center items-center h-full px-4 md:p-0">
           <h1 className='text-secondary font-sofia text-[34px] md:text-[36px] lg:text-6xl md:w-[754px] lg:w-[894px] text-center' data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-offset="100">Temukan Tanggal Imunisasi yang <span className='text-primary'>Tepat</span> untuk Buah Hati Anda!</h1>
           <div className='h-fit lg:h-[507px] w-full md:w-[686px] lg:w-[1269px] bg-white rounded-3xl mt-8 drop-shadow-lg p-8 lg:p-4 flex flex-col justify-center items-center' data-aos="flip-up" data-aos-easing="ease-in-out" data-aos-offset="100">
-            <div className='flex flex-col lg:flex-row justify-around gap-4 font-sofia w-full'>
+            <form onSubmit={searchImmunizationHandler} className='flex flex-col lg:flex-row justify-around gap-4 font-sofia w-full'>
               <div className="flex flex-col gap-2">
                 <label htmlFor="gender" className='text-primary text-xl md:text-3xl'>Jenis Kelamin</label>
-                <select name="gender" id="gender" className='lg:w-[375px] h-14 text-lg md:text-xl border-[#D6D6D6] rounded-2xl shadow-sm' defaultValue={"perempuan"}>
+                <select name="gender" id="gender" className='lg:w-[375px] h-14 text-lg md:text-xl border-[#D6D6D6] rounded-2xl shadow-sm' value={childForm.gender} onChange={(e) => setChildForm({ ...childForm, gender: e.target.value })}>
                   <option value="perempuan">Perempuan</option>
                   <option value="laki-laki">Laki-Laki</option>
                 </select>
               </div>
               <div className="flex flex-col gap-2">
                 <label htmlFor="birthdate" className='text-primary text-xl md:text-3xl'>Tanggal Lahir</label>
-                <input type="date" name="birthdate" id="birthdate" className='lg:w-[375px] h-14 text-lg md:text-xl border-[#D6D6D6] rounded-2xl shadow-sm' />
+                <input type="date" name="birthdate" id="birthdate" className='lg:w-[375px] h-14 text-lg md:text-xl border-[#D6D6D6] rounded-2xl shadow-sm' value={childForm.date_of_birth} onChange={(e) => setChildForm({ ...childForm, date_of_birth: e.target.value })} />
               </div>
               <div className="flex flex-col gap-2">
                 <label htmlFor="gender" className='text-primary text-xl hidden lg:block md:text-3xl opacity-0'>.</label>
-                <button className='lg:w-[229px] h-14 bg-primary text-white rounded-2xl text-lg'>Cari</button>
+                <button type='submit' className='lg:w-[229px] h-14 bg-primary text-white rounded-2xl text-lg'>Cari</button>
               </div>
+            </form>
+            <div className="flex flex-col w-full px-4 mt-4 gap-4">
+              {immunizations.length > 0 &&
+                <>
+                  <h1 className='text-center text-2xl font-sofia font-bold text-primary'>Imunisasi yang harus segera dilakukan</h1>
+                  {immunizations.map((immunization) => (
+                    <p className='text-center text-primary font-roboto text-xl' key={immunization.id}>{immunization.name} - {immunization.immunization_date}</p>
+                  ))}
+                </>
+              }
             </div>
           </div>
         </div>
@@ -118,7 +161,7 @@ const Index = () => {
             </div>
           </div>
           <div className="w-[350px] h-[430px] md:w-[367px] md:h-[570px] lg:w-[666px] lg:h-[742px]">
-            <img src="home/anaksd.jpeg" alt="" className='object-cover w-full h-full'/>
+            <img src="home/anaksd.jpeg" alt="" className='object-cover w-full h-full' />
           </div>
         </div>
       </div>

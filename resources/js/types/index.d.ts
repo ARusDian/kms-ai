@@ -62,7 +62,7 @@ export interface Immunization {
     chase_immunization: string,
     KIPI: string,
     schedule: string,
-    recommended_date: string,
+    recommended_days: string,
 }
 
 export interface ChildImmunization {
