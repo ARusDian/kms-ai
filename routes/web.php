@@ -8,6 +8,7 @@ use App\Http\Controllers\MeasurementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -32,7 +33,12 @@ Route::get('/linkstorage', function () {
 
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {
-    Route::get('/', fn () => Inertia::render('Dashboard/Index'))->name('dashboard');
+    Route::get('/', function () {
+        if (Auth::user()->hasAnyRole(['super-admin', 'admin'])) {
+            return Inertia::render('Dashboard/Index');
+        }
+        return redirect()->route('data-anak.index');
+    })->name('dashboard');
 
     Route::middleware(['role:super-admin'])->group(function () {
         Route::resource('/user', UserController::class);
@@ -42,7 +48,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    
+
     Route::prefix('admin')->middleware('role:admin|super-admin')->group(function () {
         // TODO::add routes for admin features
         Route::middleware('role:super-admin')->group(function () {
