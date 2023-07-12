@@ -58,8 +58,8 @@ const Index = ({ userName, children }: Props) => {
           positionActionsColumn='last'
           renderRowActions={({ row }) => (
             <div className="flex flex-col gap-2">
-              <Link href={'#'} className='w-28 text-center px-4 py-2 rounded-lg bg-primary text-complementary font-roboto font-bold hover:bg-primary'>Pengukuran</Link>
-              <Link href={'#'} className='w-28 text-center px-4 py-2 rounded-lg bg-secondary text-complementary font-roboto font-bold hover:bg-primary'>Imunisasi</Link>
+              <Link href={route('pengukuran.index', [row.original.id])} className='w-28 text-center px-4 py-2 rounded-lg bg-primary text-complementary font-roboto font-bold hover:bg-primary'>Pengukuran</Link>
+              <Link href={route('imunisasi.index', row.original.id)} className='w-28 text-center px-4 py-2 rounded-lg bg-secondary text-complementary font-roboto font-bold hover:bg-primary'>Imunisasi</Link>
             </div>
           )}
         />
