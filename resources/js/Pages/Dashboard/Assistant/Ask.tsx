@@ -19,14 +19,12 @@ const Index = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL }: Props) => {
   });
 
   const [isAsking, setIsAsking] = useState(false);
-  const [isError, setIsError] = useState(false);
 
   const api = new ChatGPTUnofficialProxyAPI({
       accessToken: ACCESS_TOKEN,
       apiReverseProxyUrl: CHATGPT_PROXY_URL,
   });
   const submitHandler = async () => {
-    setIsError(false);
     setIsAsking(true);
     const response = await api.sendMessage("Anggaplah Dirimu sebagai orang yang bernama Ansel, Jawab Dalam Bahasa Indonesia\n\n" + formState.prompt).then((res) => {
         console.log(res);
@@ -36,7 +34,6 @@ const Index = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL }: Props) => {
         });
         console.log({ response });
     }).catch(err => {
-        setIsError(true);
         console.log({ err })
     });
     setIsAsking(false);
@@ -74,13 +71,6 @@ const Index = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL }: Props) => {
             </div>
             <p>Ansel Sedang Berpikir</p>
             <p>Tunggu Ya 😉...</p>
-          </div>
-        )}
-
-        {isError && (
-          <div className="text-center text-red-500 text-lg flex flex-col mx-auto gap-3">
-            <p>Maaf, Ansel Sedang Sakit</p>
-            <p>Coba Lagi Nanti Ya 🤧...</p>
           </div>
         )}
 
