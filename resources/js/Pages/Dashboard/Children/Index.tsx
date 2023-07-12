@@ -1,6 +1,5 @@
 import ChildDataCard from '@/Components/Cards/ChildDataCard'
 import LinkButton from '@/Components/LinkButton'
-import { asset } from '@/Helper/document_file'
 import DashboardLayout from '@/Layouts/DashboardLayout'
 import { Children } from '@/types'
 import { Head } from '@inertiajs/react'
