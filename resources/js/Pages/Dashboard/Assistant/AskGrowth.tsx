@@ -41,7 +41,7 @@ const AskGrowth = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL, child }: Props) => {
     });
     const submitHandler = async () => {
         setIsAsking(true);
-        const response = await api.sendMessage("Anggaplah Dirimu sebagai orang yang bernama Ansel, Jawab Dalam Bahasa Indonesia\n\n" + formState.prompt).then((res) => {
+        const response = await api.sendMessage("Anggaplah Dirimu sebagai orang yang bernama Ansel, Jawab Dalam Bahasa Indonesia Mudah Dipahami\n\n" + formState.prompt).then((res) => {
             console.log(res);
             setFormState({
                 ...formState,
