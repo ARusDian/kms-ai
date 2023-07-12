@@ -17,7 +17,7 @@ const Navbar = ({ homeRef, featureRef, faqRef, scrollTo }: Props) => {
   const HamburgerMenu = () => (
     <div className={`w-full h-full bg-white p-4 shadow-lg border-t z-40 transition-all  duration-300`}>
       <div className="flex flex-col justify-around h-full gap-3">
-        <div className='' onClick={() => scrollTo(homeRef)}>Home>Home</div>
+        <div className='' onClick={() => scrollTo(homeRef)}>Home</div>
         <div className='' onClick={() => scrollTo(featureRef)}>Fitur</div>
         <div className='' onClick={() => scrollTo(faqRef)}>FAQ</div>
         <div className=''>Lainnya</div>
