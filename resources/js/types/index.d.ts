@@ -40,6 +40,10 @@ export interface Children {
     measurements?: Measurement[],
 }
 
+export interface ChildrenWithParent extends Children {
+    user: User
+}
+
 export interface Measurement {
     id: number,
     height: number,
