@@ -132,7 +132,7 @@ const AskGrowth = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL, child }: Props) => {
                         </div>
                     </div>
                     <div className="flex flex-col gap-1 w-full">
-                        <p className='font-bold'>Prompt :</p>
+                        <p className='font-bold'>Anda :</p>
                         <textarea
                             className="mt-1 w-full p-2 resize-y rounded-lg"
                             name="prompt"
