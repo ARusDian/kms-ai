@@ -19,7 +19,13 @@ const Index = ({ children }: Props) => {
       </div>
       <div className="mt-4 w-full h-fit p-4">
         <div className="flex flex-wrap justify-around h-fit w-full gap-4 gap mx-auto">
-          {children.length > 0 && children.map((child) => <ChildDataCard key={child.id} child={child}/>)}
+          {children.length === 0 &&
+            <div className='flex flex-col justify-center items-center w-full h-[720px] rounded-lg shadow-md border'>
+              <p className='font-semibold font-roboto text-3x italic opacity-30'>
+                Kamu belum memiliki data anak...
+              </p>
+            </div>}
+          {children.length > 0 && children.map((child) => <ChildDataCard key={child.id} child={child} />)}
         </div>
       </div>
     </DashboardLayout>
