@@ -1,26 +1,40 @@
 import { asset } from '@/Helper/document_file';
 import { PageProps } from '@/types';
-import { Link, usePage } from '@inertiajs/react'
-import React from 'react'
+import { Link, router, usePage } from '@inertiajs/react'
+import React, { useRef } from 'react'
+import ziggyRoute from 'ziggy-js';
 
 interface Props {
-  homeRef: React.RefObject<HTMLDivElement>,
-  featureRef: React.RefObject<HTMLDivElement>,
-  faqRef: React.RefObject<HTMLDivElement>,
-  scrollTo: (ref: React.RefObject<HTMLDivElement>) => void,
+  homeRef?: React.RefObject<HTMLDivElement>,
+  featureRef?: React.RefObject<HTMLDivElement>,
+  faqRef?: React.RefObject<HTMLDivElement>,
 }
 
-const Navbar = ({ homeRef, featureRef, faqRef, scrollTo }: Props) => {
+const Navbar = ({ homeRef, featureRef, faqRef }: Props) => {
   const [menuOpened, setMenuOpened] = React.useState<boolean>(false);
   const page = usePage<PageProps>();
+
+  const scrollToHandler = (ref?: React.RefObject<HTMLDivElement>) => {
+    if (ref?.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+      scrollTo({
+        top: ref.current?.offsetTop - 100,
+        left: 0,
+        behavior: 'smooth'
+      })
+    } else {
+      router.visit('/');
+    }
+    return;
+  }
 
   const HamburgerMenu = () => (
     <div className={`w-full h-full bg-white p-4 shadow-lg border-t z-40 transition-all  duration-300`}>
       <div className="flex flex-col justify-around h-full gap-3">
-        <div className='' onClick={() => scrollTo(homeRef)}>Home</div>
-        <div className='' onClick={() => scrollTo(featureRef)}>Fitur</div>
-        <div className='' onClick={() => scrollTo(faqRef)}>FAQ</div>
-        <div className=''>Lainnya</div>
+        <div className='' onClick={() => scrollToHandler(homeRef)}>Home</div>
+        <div className='' onClick={() => scrollToHandler(featureRef)}>Fitur</div>
+        <div className='' onClick={() => scrollToHandler(faqRef)}>FAQ</div>
+        <Link href={route('article')} className=''>Artikel</Link>
         <Link href={route('login')} className='font-bold text-primary'>Masuk</Link>
       </div>
     </div>
@@ -32,10 +46,10 @@ const Navbar = ({ homeRef, featureRef, faqRef, scrollTo }: Props) => {
         {/* <h1 className='text-4xl font-bold font-sofia'>{"KMS."}</h1> */}
         <img src={asset('root', 'assets/logo-anset.png')} className='w-32 md:w-[8.5rem] lg:w-40' />
         <div className="hidden md:flex flex-row w-[436px] text-[18px] md:justify-center md:gap-10  lg:justify-between items-center">
-          <div className='bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out cursor-pointer' onClick={() => scrollTo(homeRef)}>Home</div>
-          <div className='bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out cursor-pointer' onClick={() => scrollTo(featureRef)}>Fitur</div>
-          <div className='bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out cursor-pointer' onClick={() => scrollTo(faqRef)}>FAQ</div>
-          <div className='bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out cursor-pointer'>Lainnya</div>
+          <div className='bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out cursor-pointer' onClick={() => scrollToHandler(homeRef)}>Home</div>
+          <div className='bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out cursor-pointer' onClick={() => scrollToHandler(featureRef)}>Fitur</div>
+          <div className='bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out cursor-pointer' onClick={() => scrollToHandler(faqRef)}>FAQ</div>
+          <Link href={route('article')} className='bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out cursor-pointer'>Artikel</Link>
         </div>
         <Link href='/login' as='button' className="hidden md:inline-block w-[144px] h-[42px] bg-primary text-white rounded-lg text-[18px] hover:bg-opacity-90">
           {page.props.auth?.user ? 'Dashboard' : 'Masuk'}

@@ -26,6 +26,10 @@ Route::get('/', function () {
     return Inertia::render('Index');
 });
 
+Route::get('/artikel', function () {
+    return Inertia::render('Article');
+})->name('article');
+
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', function () {

@@ -18,17 +18,6 @@ const Index = () => {
   const featureRef = React.useRef<HTMLDivElement>(null);
   const faqRef = React.useRef<HTMLDivElement>(null);
 
-  const scrollToHandler = (ref: React.RefObject<HTMLDivElement>) => {
-    if (ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth' });
-      scrollTo({
-        top: ref.current?.offsetTop - 100,
-        left: 0,
-        behavior: 'smooth'
-      })
-    }
-  }
-
   const [childForm, setChildForm] = useState({
     gender: "perempuan",
     date_of_birth: moment(Date.now()).format('YYYY-MM-DD')
@@ -62,7 +51,7 @@ const Index = () => {
   return (
     <div>
       <Head title='Home' />
-      <Navbar homeRef={homeRef} featureRef={featureRef} faqRef={faqRef} scrollTo={scrollToHandler} />
+      <Navbar homeRef={homeRef} featureRef={featureRef} faqRef={faqRef}/>
 
       <div className="mt-24 w-full h-[1063px] md:h-[498px] lg:h-[815px] shadow-md mx-auto" ref={homeRef}>
         <div className="p-5 md:p-10 lg:px-20 flex flex-col md:flex-row h-full w-full justify-center md:justify-between gap-5 lg:gap-20 lg:max-w-screen-2xl mx-auto" data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-offset="100">
