@@ -17,9 +17,9 @@ const Navbar = ({ homeRef, featureRef, faqRef, scrollTo }: Props) => {
   const HamburgerMenu = () => (
     <div className={`w-full h-full bg-white p-4 shadow-lg border-t z-40 transition-all  duration-300`}>
       <div className="flex flex-col justify-around h-full gap-3">
-        <div className=''>Home</div>
-        <div className=''>Fitur</div>
-        <div className=''>FAQ</div>
+        <Link href='#' className=''>Home</Link>
+        <Link href='#' className=''>Fitur</Link>
+        <Link href='#' className=''>FAQ</Link>
         <Link href='#' className=''>Lainnya</Link>
         <Link href='#' className='font-bold text-primary'>Masuk</Link>
       </div>
@@ -32,10 +32,10 @@ const Navbar = ({ homeRef, featureRef, faqRef, scrollTo }: Props) => {
         {/* <h1 className='text-4xl font-bold font-sofia'>{"KMS."}</h1> */}
         <img src={asset('root', 'assets/logo-anset.png')} className='w-32 md:w-[8.5rem] lg:w-40' />
         <div className="hidden md:flex flex-row w-[436px] text-[18px] md:justify-center md:gap-10  lg:justify-between items-center">
-          <div className='cursor-pointer bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out' onClick={() => scrollTo(homeRef)}>Home</div>
-          <div className='cursor-pointer bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out' onClick={() => scrollTo(featureRef)}>Fitur</div>
-          <div className='cursor-pointer bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out' onClick={() => scrollTo(faqRef)}>FAQ</div>
-          <div className='cursor-pointer bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out'>Lainnya</div>
+          <Link href='#' className='bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out'>Home</Link>
+          <Link href='#' className='bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out'>Fitur</Link>
+          <Link href='#' className='bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out'>FAQ</Link>
+          <Link href='#' className='bg-left-bottom bg-gradient-to-r from-primary to-primary bg-[length:0%_1.5px] bg-no-repeat hover:bg-[length:100%_1.5px] transition-all duration-300 ease-out'>Lainnya</Link>
         </div>
         <Link href='/login' as='button' className="hidden md:inline-block w-[144px] h-[42px] bg-primary text-white rounded-lg text-[18px] hover:bg-opacity-90">
           {page.props.auth?.user ? 'Dashboard' : 'Masuk'}
