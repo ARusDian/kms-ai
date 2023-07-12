@@ -1,13 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssistantController;
 use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\ChildrenImmunizationController;
-use App\Http\Controllers\ImmunizationController;
 use App\Http\Controllers\MeasurementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,7 +34,8 @@ Route::get('/linkstorage', function () {
 Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', function () {
         if (Auth::user()->hasAnyRole(['super-admin', 'admin'])) {
-            return Inertia::render('Dashboard/Index');
+            $adminController = new AdminController();
+            return $adminController->index();
         }
         return redirect()->route('data-anak.index');
     })->name('dashboard');
