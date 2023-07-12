@@ -2,7 +2,7 @@ import MeasurementDataCard from '@/Components/Cards/MeasurementDataCard';
 import { asset } from '@/Helper/document_file';
 import DashboardLayout from '@/Layouts/DashboardLayout'
 import { Children, Measurement } from '@/types';
-// import { ChatGPTUnofficialProxyAPI } from "chatgpt";
+import { ChatGPTUnofficialProxyAPI } from "chatgpt";
 import moment from 'moment';
 import { useMemo, useState } from 'react';
 import ReactLoading from 'react-loading';
@@ -36,26 +36,26 @@ const AskGrowth = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL, child }: Props) => {
     const [isAsking, setIsAsking] = useState(false);
     const [isError, setIsError] = useState(false);
 
-    // const api = new ChatGPTUnofficialProxyAPI({
-    //     accessToken: ACCESS_TOKEN,
-    //     apiReverseProxyUrl: CHATGPT_PROXY_URL,
-    // });
-    // const submitHandler = async () => {
-    //     setIsError(false);
-    //     setIsAsking(true);
-    //     const response = await api.sendMessage("Anggaplah Dirimu sebagai orang yang bernama Ansel, Jawab Dalam Bahasa Indonesia\n\n" + formState.prompt).then((res) => {
-    //         console.log(res);
-    //         setFormState({
-    //             ...formState,
-    //             answer: res.text
-    //         });
-    //         console.log({ response });
-    //     }).catch(err => {
-    //         setIsError(true);
-    //         console.log({ err })
-    //     });
-    //     setIsAsking(false);
-    // };
+    const api = new ChatGPTUnofficialProxyAPI({
+        accessToken: ACCESS_TOKEN,
+        apiReverseProxyUrl: CHATGPT_PROXY_URL,
+    });
+    const submitHandler = async () => {
+        setIsError(false);
+        setIsAsking(true);
+        const response = await api.sendMessage("Anggaplah Dirimu sebagai orang yang bernama Ansel, Jawab Dalam Bahasa Indonesia\n\n" + formState.prompt).then((res) => {
+            console.log(res);
+            setFormState({
+                ...formState,
+                answer: res.text
+            });
+            console.log({ response });
+        }).catch(err => {
+            setIsError(true);
+            console.log({ err })
+        });
+        setIsAsking(false);
+    };
 
     // const api = new ChatGPTUnofficialProxyAPI({
     //     accessToken: ACCESS_TOKEN,
@@ -144,7 +144,7 @@ const AskGrowth = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL, child }: Props) => {
                     </div>
                 </div>
                 <button
-                    // onClick={submitHandler}
+                    onClick={submitHandler}
                     className="bg-yellow-500 text-white hover:bg-yellow-600 py-2 w-full mt-4 rounded-lg text-md font-semibold mx-auto">
                     Submit
                 </button>

@@ -8,7 +8,7 @@ import LinkButton from '../LinkButton'
 interface Props {
   measurement: Measurement,
   childId: number
-  display: {
+  display?: {
     analysis?: boolean,
     allData?: boolean,
     headerText?: boolean,
