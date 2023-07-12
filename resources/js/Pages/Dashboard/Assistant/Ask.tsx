@@ -86,11 +86,10 @@ const Index = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL }: Props) => {
 
         <div className="flex flex-row gap-4 items-center w-full">
           <div className="flex items-center w-20 h-24">
-            <button
-              onClick={submitHandler}
-              className="bg-yellow-500 text-white hover:bg-yellow-600 py-2 w-full mt-4 rounded-lg text-md font-semibold mx-auto">
-              Submit
-            </button>
+
+            <div className="relative w-[72px] h-[72px] overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+              <svg className="absolute w-20 h-20 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
+            </div>
           </div>
           <div className="flex flex-col gap-1 w-full">
             <p className='font-bold'>Prompt :</p>
@@ -100,10 +99,15 @@ const Index = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL }: Props) => {
               id="prompt"
               value={formState.prompt}
               onChange={(e) => setFormState({ ...formState, prompt: e.target.value })}
-              placeholder='Tulis Pertanyaanmu Di sini'
+              placeholder='Tulis pertanyaanmu di sini...'
             />
           </div>
         </div>
+        <button
+          onClick={submitHandler}
+          className="bg-yellow-500 text-white hover:bg-yellow-600 py-2 w-full mt-4 rounded-lg text-md font-semibold mx-auto">
+          Submit
+        </button>
       </div>
 
     </DashboardLayout>
