@@ -9,18 +9,17 @@ interface Props {
   measurement: Measurement,
   childId: number
   seeAnalysis?: boolean,
+  seeAllData?: boolean,
 }
 
-const MeasurementDataCard = ({ measurement, childId, seeAnalysis = true }: Props) => {
+const MeasurementDataCard = ({ measurement, childId, seeAnalysis = true, seeAllData = true }: Props) => {
   return (
     <div className="w-full mt-2 p-4">
       <div className="flex flex-row justify-between font-sofia">
         <h1 className='text-3xl font-bold'>Hasil Pertumbuhan</h1>
         <div className="flex flex-row gap-4">
-          <Link href={route('pengukuran.index', childId)} className='font-sofia text-white bg-primary px-2 py-1 rounded-lg text-xl'>Lihat Semua</Link>
-          {
-            seeAnalysis && <Link className='bg-yellow-500 hover:bg-yellow-600 font-sofia text-white px-2 py-1 rounded-lg text-xl' href={route('ask.growth', childId)}>Analisis Pertumbuhan</Link>
-          }
+          {seeAllData && <Link href={route('pengukuran.index', childId)} className='font-sofia text-white bg-primary px-2 py-1 rounded-lg text-xl'>Lihat Semua</Link>}
+          {seeAnalysis && <Link className='bg-yellow-500 hover:bg-yellow-600 font-sofia text-white px-2 py-1 rounded-lg text-xl' href={route('ask.growth', childId)}>Analisis Pertumbuhan</Link>}
         </div>
       </div>
       <div className="rounded-3xl shadow-lg border h-[540px] mt-4 flex flex-col">

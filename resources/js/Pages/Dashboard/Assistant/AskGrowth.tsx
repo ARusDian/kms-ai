@@ -60,6 +60,7 @@ const AskGrowth = ({ ACCESS_TOKEN, CHATGPT_PROXY_URL, child }: Props) => {
                 measurement={child.measurements[0]}
                 childId={child.id}
                 seeAnalysis={false}
+                seeAllData={false}
             />
             <form className="flex flex-col gap-5">
                 <div className="flex gap-3">
