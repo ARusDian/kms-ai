@@ -16,7 +16,7 @@ const Edit = ({ measurement, childId }: Props) => {
     height: measurement.height.toString(),
     head_circumference: measurement.head_circumference.toString(),
     date_of_measurement: measurement.date_of_measurement,
-    note: measurement.note.toString(),
+    note: measurement.note ? measurement.note.toString() : "",
     children_id: measurement.children_id.toString(),
   })
 
